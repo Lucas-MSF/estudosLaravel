@@ -1,9 +1,18 @@
 <?php
-    
-    require_once "scr/Conta.php";
-    require_once "scr/Cliente.php";
+   
+    error_reporting(E_ALL);
+    ini_set("display_errors", 1);
 
-    $conta= new Conta(new Cliente(cpf:"123.456.789-10", nome:"Lucas" ));
+    require_once "autoload.php";
+    
+    use Alura\Banco\Model\Conta\Conta;
+    use Alura\Banco\Model\Conta\Cliente;
+    use Alura\Banco\Model\Endereco;
+    
+
+    $endereco= new Endereco("guanambi","centro","rua 2","15");
+
+    $conta= new Conta(cliente: new Cliente(cpf:"123.456.789-10", nome:"Lucas", endereco: $endereco ));
     $conta->depositarSaldo(1500);
     echo $conta->getSaldo()."<br>";
 

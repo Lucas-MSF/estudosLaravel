@@ -1,5 +1,9 @@
 <?php
 
+namespace Alura\Banco\Model\Conta;
+
+use Alura\Banco\Model\Conta\Cliente;
+
 class Conta 
 {
     private Cliente $cliente;

@@ -1,6 +1,8 @@
 <?php 
+namespace Alura\Banco\Model;
 
-class Cliente{
+class Pessoa
+{
     private string $cpf;
     private string $nome;
 
