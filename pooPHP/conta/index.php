@@ -1,8 +1,9 @@
 <?php
     
     require_once "scr/Conta.php";
+    require_once "scr/Cliente.php";
 
-    $conta= new Conta(cpf: "123.456.789-10", nome:"Lucas");
+    $conta= new Conta(new Cliente(cpf:"123.456.789-10", nome:"Lucas" ));
     $conta->depositarSaldo(1500);
     echo $conta->getSaldo()."<br>";
 

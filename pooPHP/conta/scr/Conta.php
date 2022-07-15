@@ -1,27 +1,23 @@
 <?php
 
-class Conta
+class Conta 
 {
-    private string $cpf;
-    private string $nome;
+    private Cliente $cliente;
     private float $saldo;
 
-    public function __construct(string $cpf, string $nome)
+    public function __construct(Cliente $cliente)
     {   
-        $this->cpf=$cpf;
-        $this->nome=$nome;
+        $this->cliente=$cliente;
         $this->saldo=0;
     }
-    public function getCpf()
-    {
-        return $this->cpf;;
+    public function getNome(){
+        return $this->cliente->getNome();
     }
-    
-    public function getNome()
-    {
-        return $this->nome;
+
+    public function getCpf(){
+        return $this->cliente->getCpf();
     }
-    
+
     public function getSaldo()
     {
         return $this->saldo;
