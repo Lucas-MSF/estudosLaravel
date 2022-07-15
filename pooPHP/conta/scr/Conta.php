@@ -28,19 +28,36 @@ class Conta
     }
     public function depositarSaldo($deposito)
     {
-        if($deposito>0){
+        if($deposito>0)
+        {
             $this->saldo+=$deposito;
             return true;
-        }else{
+        }else
+        {
             return false;
         }
     }
     public function sacarSaldo($saque)
     {
-        if($this->saldo>=$saque){
+        if($this->saldo>=$saque)
+        {
             $this->saldo-=$saque;
             return true;
-        }else{
+        }else
+        {
+            return false;
+        }
+    }
+
+    public function transferir($valor, Conta $contaTranferencia)
+    {
+        if($valor<$this->saldo)
+        {
+            $this->sacarSaldo($valor);
+            $contaTranferencia->depositarSaldo($valor);
+            return true;
+        }else
+        {
             return false;
         }
     }
