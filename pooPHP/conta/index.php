@@ -2,10 +2,7 @@
     
     require_once "scr/Conta.php";
 
-    $conta= new Conta();
-
-    $conta->setCpf("123.456.789-10");
-    $conta->setNome("Lucas");
+    $conta= new Conta(cpf: "123.456.789-10", nome:"Lucas");
     $conta->depositarSaldo(1500);
     echo $conta->getSaldo()."<br>";
 
