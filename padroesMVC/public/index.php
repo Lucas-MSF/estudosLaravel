@@ -5,7 +5,7 @@ use Alura\Cursos\Controller\FormularioInsercao;
 use Alura\Cursos\Controller\ListarCursos;
 
 switch ($_SERVER['PATH_INFO']) {
-    case 'listar-cursos':
+    case '/listar-cursos':
         $controlador= new ListarCursos();
         $controlador->processaRequisicao();
         break;
