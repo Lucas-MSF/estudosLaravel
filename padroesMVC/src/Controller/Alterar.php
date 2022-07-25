@@ -5,7 +5,7 @@ namespace Alura\Cursos\Controller;
 use Alura\Cursos\Infra\EntityManagerCreator;
 use Alura\Cursos\Entity\Curso;
 
-class Alterar implements InterfaceControladorRequisicao
+class Alterar extends ControllerHtml  implements InterfaceControladorRequisicao
 {
 
     private $repositorioCursos;
@@ -24,8 +24,9 @@ class Alterar implements InterfaceControladorRequisicao
             return;
         }
 
-        $curso=$this->repositorioCursos->find($id);    
-        $titulo= 'Alterar curso: '. $curso->getDescricao();
-        require __DIR__.'/../../View/Cursos/formulario-novo-curso.php';
+        $curso=$this->repositorioCursos->find($id); 
+        echo $this->renderizaHtml('Cursos/formulario-novo-curso.php', ['curso'=>$curso,'titulo' => 'Alterar curso: '. $curso->getDescricao()]);   
+
+     
     }
 }
