@@ -1,5 +1,6 @@
 <?php
 
+use Alura\Cursos\Controller\Alterar;
 use Alura\Cursos\Controller\Exclusao;
 use Alura\Cursos\Controller\FormularioInsercao;
 use Alura\Cursos\Controller\ListarCursos;
@@ -9,6 +10,7 @@ return [
     '/listar-cursos' => ListarCursos::class,
     '/novo-curso' => FormularioInsercao::class,
     '/salvar-curso' => Persistencia::class,
-    '/excluir-curso'=> Exclusao::class
+    '/excluir-curso'=> Exclusao::class,
+    '/alterar-curso'=> Alterar::class
 ];
 
