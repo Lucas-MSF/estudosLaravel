@@ -3,7 +3,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use Alura\Cursos\Controller\InterfaceControladorRequisicao;
 
-$caminho= $_SERVER['PAHT_INFO'];
+$caminho= $_SERVER['PATH_INFO'];
 $rotas= require __DIR__.'/../config/Routes.php';
 
 if(!array_key_exists($caminho,$rotas)){
