@@ -6,6 +6,7 @@ use Alura\Cursos\Controller\{
     FormularioInsercao,
     FormularioLogin,
     ListarCursos,
+    Logout,
     Persistencia,
     RealizaLogin
 };
@@ -18,5 +19,6 @@ return [
     '/excluir-curso' => Exclusao::class,
     '/alterar-curso' => Alterar::class,
     '/login' => FormularioLogin::class,
-    '/realiza-login' => RealizaLogin::class
+    '/realiza-login' => RealizaLogin::class,
+    '/logout'=> Logout::class
 ];

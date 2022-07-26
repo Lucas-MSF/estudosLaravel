@@ -10,6 +10,12 @@ if(!array_key_exists($caminho,$rotas)){
     http_response_code(404);
     exit();
 }
+session_start();
+
+if(!isset($_SESSION['logado']) && $caminho !== '/login' && $caminho !== '/realiza-login'){
+    header('Location: /login');
+    exit();
+}
 $classeControladora= $rotas[$caminho];
 
 /** @var InterfaceControladorRequisicao $controlador */
