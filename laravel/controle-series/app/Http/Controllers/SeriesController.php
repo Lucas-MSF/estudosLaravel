@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 class SeriesController extends Controller
 {
-    public function listarSeries()
+    public function index(Request $request)
     {
         $series = ['Modern Family', 'Friends', 'The boys', 'Supernatural'];
 
@@ -13,7 +15,11 @@ class SeriesController extends Controller
             $html .= "<li> $serie </li>";
         }
         $html .= '</ul>';
-
-        return $html;
+        return view('series.index', compact('series'));
+    }
+    public function  create ()
+    {
+        $titulo='Nova serie';
+        return view('series.create');
     }
 }
