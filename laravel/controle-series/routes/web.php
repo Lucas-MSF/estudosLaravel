@@ -19,3 +19,4 @@ Route::get('/series',[SeriesController::class,'index'])->name('listar-series');
 Route::get('/series/criar',[SeriesController::class,'create'])->name('form-criar-serie');
 Route::post('/series/criar',[SeriesController::class,'store']);
 Route::delete('/series/{id}',[SeriesController::class,'destroy']);
+Route::put('/series/criar'. [SeriesController::class,'update']);
