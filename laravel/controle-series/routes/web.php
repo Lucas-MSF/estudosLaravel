@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SeriesController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +15,7 @@ use App\Http\Controllers\SeriesController;
 |
 */
 
-Route::get('/series',[SeriesController::class,'index']);
-Route::get('/series/criar',[SeriesController::class,'create']);
+Route::get('/series',[SeriesController::class,'index'])->name('listar-series');
+Route::get('/series/criar',[SeriesController::class,'create'])->name('form-criar-serie');
 Route::post('/series/criar',[SeriesController::class,'store']);
+Route::delete('/series/{id}',[SeriesController::class,'destroy']);
