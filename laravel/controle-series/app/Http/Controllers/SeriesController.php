@@ -35,11 +35,16 @@ class SeriesController extends Controller
         
 
     }
+    public function edit(Request $request)
+    {
+        $serie= Serie::find($request->id);
+        return view('series.create', compact('serie'));
+    }
+    
     public function update(SeriesFormRequest $request, $id)
     {
-        $serie= Serie::find($id);
-        $serie->nome= $request->input('nome');
-        $serie->update();
+        
+        Serie::find($id)->update(['nome'=>$request->nome]);
         $request->session()->flash('mensagem','Serie Alterada com sucesso!');
         return redirect()->route('listar-series');
 
