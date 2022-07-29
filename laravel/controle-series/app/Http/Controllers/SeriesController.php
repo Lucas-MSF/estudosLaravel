@@ -2,24 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Serie;
 use Illuminate\Http\Request;
 
 class SeriesController extends Controller
 {
     public function index(Request $request)
     {
-        $series = ['Modern Family', 'Friends', 'The boys', 'Supernatural'];
+        $series = Serie::all();
 
-        $html = '<ul>';
-        foreach ($series as $serie) {
-            $html .= "<li> $serie </li>";
-        }
-        $html .= '</ul>';
         return view('series.index', compact('series'));
     }
-    public function  create ()
+    public function  create()
     {
-        $titulo='Nova serie';
+        $titulo = 'Nova serie';
         return view('series.create');
+    }
+    public function store(Request $request)
+    {
+        $nome = $request->nome;
+        $serie = Serie::create($request->all());
+        echo "Serie com id {$serie->id} criada:{$serie->nome}";
     }
 }

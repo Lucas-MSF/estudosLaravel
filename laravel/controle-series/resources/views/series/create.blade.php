@@ -6,6 +6,7 @@
 
 @section('conteudo')
     <form action="" method="POST">
+        @csrf
         <div class="form-group">
             <label for="Nome">Nome:</label>
             <input type="text" name="nome" id="Nome" class="form-control">
