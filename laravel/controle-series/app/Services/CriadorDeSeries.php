@@ -24,7 +24,7 @@ class CriadorDeSeries
     }
     private function criaEpisodios($epPorTemporada, &$temporada)
     {
-        for ($j = 0; $j <= $epPorTemporada; $j++) {
+        for ($j = 1; $j <= $epPorTemporada; $j++) {
             $temporada->episodios()->create(['numero' => $j]);
         }
     }
