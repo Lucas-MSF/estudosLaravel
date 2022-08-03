@@ -12,7 +12,7 @@
     <a href="{{ route('form-criar-serie') }}" class="btn btn-dark mb-2">Adcionar</a>
     <ul class="list-group">
         @foreach ($series as $serie)
-            <li class="list-group-item align-items-center d-flex justify-content-between mt-2 ">
+            <li class="list-group-item d-flex justify-content-between align-items-center ">
                 <span id="nome-serie-{{ $serie->id }}">{{ $serie->nome }}</span>
 
                 <div class="input-group w-50" hidden id="input-nome-serie-{{ $serie->id }}">
@@ -25,20 +25,23 @@
                     </div>
                 </div>
 
-                <span class="d-flex align-items-center ">
+                <span class="d-flex  align-items-center">
+                  
                     <button class="btn btn-info btn-sm mr-1" onclick="toggleInput({{ $serie->id }})">
-                        editar
+                        <ion-icon name="create-outline" size="small"></ion-icon>
                     </button>
 
 
-                    <a href="/series/{{ $serie->id }}/temporadas" class="btn btn-info btn-sm mr-1">Temporadas</a>
+                    <a href="/series/{{ $serie->id }}/temporadas" class="btn btn-info btn-sm mr-1 ">
+                        <ion-icon name="eye-outline" size="small"></ion-icon>
+                    </a>
 
-                    <form action="/series/{{ $serie->id }}" method="post"
+                    <form  action="/series/{{ $serie->id }}" method="post"
                         onsubmit="return confirm('Deseja excluir a serie {{ addslashes($serie->nome) }}?')">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm mr-1">
-                            Excluir
+                        <button type="submit" class="btn btn-danger btn-sm mt-3 ">
+                            <ion-icon name="trash" size="small"></ion-icon>
                         </button>
                     </form>
                 </span>
