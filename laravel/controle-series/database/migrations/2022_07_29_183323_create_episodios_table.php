@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('episodios', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('numero');
-            $table->integer('id_temporada');
-            $table->foreign('id_temporada')->references('id')->on('temporadas');
+            $table->integer('temporada_id');
+            $table->foreign('temporada_id')->references('id')->on('temporadas');
         });
     }
 

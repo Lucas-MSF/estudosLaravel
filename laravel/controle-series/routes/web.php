@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SeriesController;
-
+use App\Http\Controllers\TemporadasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +21,4 @@ Route::post('/series/criar',[SeriesController::class,'store']);
 Route::delete('/series/{id}',[SeriesController::class,'destroy']);
 Route::post('/series/edit/{id}', [SeriesController::class,'edit'] );
 Route::put('/series/edit/{id}', [SeriesController::class,'update']);
+Route::get('/series/{serie_id}/temporadas', [TemporadasController::class,'index']);

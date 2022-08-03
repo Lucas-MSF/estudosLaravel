@@ -12,7 +12,7 @@
     <a href="{{ route('form-criar-serie') }}" class="btn btn-dark mb-2">Adcionar</a>
     <ul class="list-group">
         @foreach ($series as $serie)
-            <li class="list-group-ite d-flex justify-content-between mt-2 "> {{ $serie->nome }}
+            <li class="list-group-item align-items-center d-flex justify-content-between mt-2 "> {{ $serie->nome }}
                <span class="d-flex">
                 <form action="/series/edit/{{ $serie->id }}" method="post">
                     @csrf
@@ -26,7 +26,7 @@
                         <ion-icon name="trash-sharp" size="small"></ion-icon>
                     </button>
                 </form>
-                <a href="#" class="btn btn-info btn-sm mr-1">sei la</a>
+                <a href="/series/{{$serie->id}}/temporadas" class="btn btn-info btn-sm mr-1">Temporadas</a>
 
             </span>
               

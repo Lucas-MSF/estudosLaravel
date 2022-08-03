@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SeriesFormRequest;
+use App\Models\Episodio;
 use App\Models\Serie;
+use App\Models\Temporada;
+use App\Services\CriadorDeSeries;
 use Illuminate\Http\Request;
 
 class SeriesController extends Controller
@@ -21,23 +24,23 @@ class SeriesController extends Controller
         $titulo = 'Adcionar serie';
         return view('series.create', compact('titulo'));
     }
-    public function store(SeriesFormRequest $request)
+    public function store(SeriesFormRequest $request, CriadorDeSeries $criadorDeSeries)
     {
-        $serie = Serie::create(['nome' => $request->nome]);
-        $qntTemporadas = $request->quantidade_temporadas;
-        for ($i = 1; $i <= $qntTemporadas; $i++) {
-            $temporada = $serie->temporadas()->create(['numero' => $i]);
-            for ($j = 0; $j <= $request->quantidade_episodios; $j++) {
-                $temporada->episodio()->create(['numero' => $j]);
-            }
-        }
 
+        $serie = $criadorDeSeries->criarSerie($request->nome, $request->quantidade_temporadas, $request->quantidade_episodios);
         $request->session()->flash('mensagem', "Serie {$serie->nome} inserida com sucesso.");
         return redirect()->route('listar-series');
     }
     public function destroy(Request $request)
     {
-        Serie::destroy($request->id);
+        $serie = Serie::find($request->id);
+        $serie->temporadas->each(function (Temporada $temporada) {
+            $temporada->episodios->each(function (Episodio $episodio) {
+                $episodio->delete();
+            });
+            $temporada->delete();
+        });
+        $serie->delete();
         $request->session()->flash('mensagem', 'Serie removida com sucesso');
         return redirect()->route('listar-series');
     }
