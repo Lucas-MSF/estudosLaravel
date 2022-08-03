@@ -32,22 +32,16 @@ class SeriesController extends Controller
     }
     public function destroy(Request $request, RemovedorDeSeries $removedorDeSeries)
     {
-        $serie= $removedorDeSeries->removerSerie($request->id);
+        $serie = $removedorDeSeries->removerSerie($request->id);
         $request->session()->flash('mensagem', "Serie {$serie} removida com sucesso");
         return redirect()->route('listar-series');
     }
-    public function edit(Request $request)
-    {
-        $titulo = 'Alterar serie';
-        $serie = Serie::find($request->id);
-        return view('series.create', compact('serie', 'titulo'));
-    }
-
-    public function update(SeriesFormRequest $request, $id)
+    public function edit(int $id, Request $request)
     {
 
-        Serie::find($id)->update(['nome' => $request->nome]);
-        $request->session()->flash('mensagem', 'Serie Alterada com sucesso!');
-        return redirect()->route('listar-series');
+        $novoNome = $request->nome;
+        $serie = Serie::find($id);
+        $serie->nome = $novoNome;
+        $serie->save();
     }
 }
