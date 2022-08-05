@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{EntrarController, EpisodiosController, RegistroController, SeriesController, TemporadasController};
-
+use App\Mail\NovaSerie;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +39,5 @@ Route::get('/sair', function()
     Auth::logout();
     return redirect('/entrar');
 });
+
+Route::get('/visualizando-email',[NovaSerie::class,'build'] );
