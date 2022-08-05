@@ -7,12 +7,14 @@ use App\Models\Serie;
 use App\Services\CriadorDeSeries;
 use App\Services\RemovedorDeSeries;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SeriesController extends Controller
 {
+    
     public function index(Request $request)
     {
-
+        
         $series = Serie::query()->orderBy('nome')->get();
         $mensagem = $request->session()->get('mensagem');
         $request->session()->remove('mensagem');

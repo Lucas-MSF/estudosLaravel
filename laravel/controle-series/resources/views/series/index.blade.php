@@ -9,7 +9,10 @@
             {{ $mensagem }}
         </div>
     @endif
+    @auth
+        
     <a href="{{ route('form-criar-serie') }}" class="btn btn-dark mb-2">Adcionar</a>
+    @endauth
     <ul class="list-group">
         @foreach ($series as $serie)
             <li class="list-group-item d-flex justify-content-between align-items-center ">
@@ -26,24 +29,28 @@
                 </div>
 
                 <span class="d-flex  align-items-center">
-                  
-                    <button class="btn btn-info btn-sm mr-1" onclick="toggleInput({{ $serie->id }})">
-                        <ion-icon name="create-outline" size="small"></ion-icon>
-                    </button>
+                    @auth
+
+                        <button class="btn btn-info btn-sm mr-1" onclick="toggleInput({{ $serie->id }})">
+                            <ion-icon name="create-outline" size="small"></ion-icon>
+                        </button>
 
 
+                    @endauth
                     <a href="/series/{{ $serie->id }}/temporadas" class="btn btn-info btn-sm mr-1 ">
                         <ion-icon name="eye-outline" size="small"></ion-icon>
                     </a>
+                    @auth
 
-                    <form  action="/series/{{ $serie->id }}" method="post"
-                        onsubmit="return confirm('Deseja excluir a serie {{ addslashes($serie->nome) }}?')">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm mt-3 ">
-                            <ion-icon name="trash" size="small"></ion-icon>
-                        </button>
-                    </form>
+                        <form action="/series/{{ $serie->id }}" method="post"
+                            onsubmit="return confirm('Deseja excluir a serie {{ addslashes($serie->nome) }}?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm mt-3 ">
+                                <ion-icon name="trash" size="small"></ion-icon>
+                            </button>
+                        </form>
+                    @endauth
                 </span>
 
             </li>
@@ -78,15 +85,15 @@
         formData.append('_token', token);
 
         const url = `/series/${serieId}/editNome`;
-       
+
         fetch(url, {
             method: 'POST',
             body: formData
         }).then(() => {
             toggleInput(serieId);
             document
-            .getElementById(`nome-serie-${serieId}`)
-            .textContent = nome;
+                .getElementById(`nome-serie-${serieId}`)
+                .textContent = nome;
         });
     }
 </script>
