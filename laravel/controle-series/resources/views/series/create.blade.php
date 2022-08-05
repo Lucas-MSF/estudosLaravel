@@ -14,7 +14,7 @@
             </ul>
         </div>
     @endif
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
 
         @csrf
 
@@ -35,6 +35,12 @@
                 <input type="number" name="quantidade_episodios" id="episodios" class="form-control" value="1">
             </div>
 
+        </div>
+        <div class="row mt-2">
+            <div class="input-group mb-3 col col-8">
+                <label class="input-group-text" for="inputGroupFile01">Upload</label>
+                <input type="file" class="form-control" id="inputGroupFile01" name="capa">
+              </div>
         </div>
         <button class="btn btn-primary mt-2">Adcionar</button>
     </form>

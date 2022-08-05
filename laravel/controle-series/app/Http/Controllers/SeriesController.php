@@ -30,8 +30,14 @@ class SeriesController extends Controller
     public function store(SeriesFormRequest $request, CriadorDeSeries $criadorDeSeries)
     {
 
+        $capa= null;
 
-        $serie = $criadorDeSeries->criarSerie($request->nome, $request->quantidade_temporadas, $request->quantidade_episodios);
+        if($request->hasFile('capa'))
+        {
+            $capa= $request->file('capa')->store('serie');
+        }
+
+        $serie = $criadorDeSeries->criarSerie($request->nome, $request->quantidade_temporadas, $request->quantidade_episodios, $capa);
        
 
         $this->enviaEmail($request->nome, $request->quantidade_temporadas, $request->quantidade_episodios,$request->user()->name,$request->user()->email);
