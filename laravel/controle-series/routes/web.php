@@ -40,4 +40,4 @@ Route::get('/sair', function()
     return redirect('/entrar');
 });
 
-Route::get('/visualizando-email',[NovaSerie::class,'build'] );
+
