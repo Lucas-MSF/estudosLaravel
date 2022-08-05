@@ -23,3 +23,7 @@ Route::post('/series/{id}/editNome', [SeriesController::class,'edit'] );
 Route::get('/series/{serie_id}/temporadas', [TemporadasController::class,'index']);
 Route::get('/temporadas/{temporada}/episodios', [EpisodiosController::class,'index']);
 Route::post('/temporadas/{temporada}/episodios/assistir', [EpisodiosController::class,'assistir']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
